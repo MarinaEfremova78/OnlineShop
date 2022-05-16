@@ -1,0 +1,44 @@
+﻿@model List<User>
+
+<div class="container-fluid">
+    <div class="row">
+        @await Html.PartialAsync("AdminLeftMenu")
+        <div class="col-9">
+            <div class="col-12 text-center">
+                <h3>Список пользователей</h3>
+            </div>
+            @if (Model != null && Model.Count != 0)
+            {
+                <div class="my-3"></div>
+                <table class="table">
+                    <thead>
+                        <tr class="text-center">
+                            <th>E-mail(логин)</th>
+                            <th>Имя</th>
+                            <th>Фамилия</th>
+                            <th>Телефон</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr class="text-center">
+                                <td><a asp-area="Admin" asp-controller="Users" asp-action="Details" asp-route-userId="@user.Id">@user.Id</a></td>
+                                <td>@user.Name</td>
+                                <td>@user.Surname</td>
+                                <td>@user.PhoneNumber</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            <hr class="my-3" />
+            <div class="row">
+                <div class="col-9 text-left">
+                    <a class="btn btn-outline-info" asp-area="Admin" asp-controller="Users" asp-action="Create">Добавить пользователя</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

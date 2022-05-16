@@ -1,0 +1,49 @@
+﻿@model List<Product>
+
+<div class="container">
+    <div class="text-center">
+        <h3>Товары для сравнения</h3>
+        <hr class="my-4" />
+    </div>
+    <div class="row">
+        <div class="col">
+            <h5>Название</h5>
+            <hr class="my-4" />
+            <h5>Стоимость</h5>
+            <hr class="my-4" />
+            <h5>Продолжительность</h5>
+            <hr class="my-4" />
+        </div>
+
+        @foreach (var product in Model)
+        {
+            <div class="col">
+                <div class="text-center">
+                    <p>@product.Name</p>
+                    <hr class="my-4" />
+                    <p>@product.Cost рублей</p>
+                    <hr class="my-4" />
+                    <p>@product.Duration минут</p>
+                    <hr class="my-4" />
+                </div>
+                <div class="text-center">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                            <a class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Убрать из сравнения" asp-area="" asp-controller="Comparison" asp-action="Remove" asp-route-productId="@product.Id"><i class="bi bi-trash"></i></a>
+                            @await Component.InvokeAsync("CartFill", product.Id)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <hr class="my-4" />
+    <div class="text-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-dark" asp-controller="Home" asp-action="Index">Продолжить покупки</a>
+            <a class="btn btn-outline-danger" asp-controller="Comparison" asp-action="Clear">Очистить всё</a>
+        </div>
+    </div>
+</div>
+
+

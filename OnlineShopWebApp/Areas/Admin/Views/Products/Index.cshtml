@@ -1,0 +1,64 @@
+﻿@model List<Product>
+
+<div class="container-fluid">
+    <div class="row">
+        @await Html.PartialAsync("AdminLeftMenu")
+        <div class="col-9">
+            <div class="col-12 text-center">
+                <h3>Список продуктов</h3>
+            </div>
+            <hr class="my-3" />
+            <div class="text-left">
+                <a asp-area="Admin" asp-controller="Products" asp-action="Create" class="btn btn-outline-dark"><i class="bi bi-plus-lg"></i>Добавить новый продукт</a>
+            </div>
+            <hr class="my-3" />
+            <div class="container-fluid">
+                <div class="row">
+                    @foreach (var product in Model)
+                    {
+
+                        <div class="col-sm-3 d-flex align-items">
+                            <div class="card text-center shadow">
+                                <div class="card-body">
+                                    <h4><a asp-area="Admin" asp-controller="Products" asp-action="Details" asp-route-productId="@product.Id">@product.Name</a></h4>
+                                    <p>Стоимость: @product.Cost рублей</p>
+                                    <p>Длительность: @product.Duration минут</p>
+                                </div>
+                                <div class="card-footer justify-content-center">
+                                    <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                                        <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Products" asp-action="Details" asp-route-productId="@product.Id">Подробнее</a>
+                                        <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-productId="@product.Id">Редактировать</a>
+                                        <hr class="my-3" />
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                                            Удалить
+                                        </button>
+                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="myModalLabel">Удаление продукта</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Вы действительно хотите удалить этот продукт?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Нет</button>
+                                                        <a asp-area="Admin" asp-controller="Products" asp-action="Remove" asp-route-productId="@product.Id" type="button" class="btn btn-danger">Да</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

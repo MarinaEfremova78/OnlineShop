@@ -1,0 +1,10 @@
+﻿@model string
+
+@if (Model == "Unknown_user")
+{
+    <a class="btn btn-outline-dark" role="button" asp-area="" asp-controller="Account" asp-action="Signin">Войти</a>
+}
+else
+{
+    <a class="btn btn-outline-dark" role="button" asp-area="" asp-controller="Account" asp-action="Signin">@Model</a>
+}

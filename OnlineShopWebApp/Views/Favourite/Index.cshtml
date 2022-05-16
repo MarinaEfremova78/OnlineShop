@@ -1,0 +1,40 @@
+﻿@model List<Product>
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 text-center">
+            <h3>Избранное</h3>
+        </div>
+        <div class="col-4 text-right">
+            <a class="btn btn-outline-danger" asp-area="" asp-controller="Favourite" asp-action="Clear">Очистить всё <i class="bi bi-trash"></i></a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        @foreach (var product in Model)
+        {
+
+            <div class="col-sm-3 d-flex align-items">
+                <div class="card text-center shadow">
+                    <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">
+                        <img src=@product.ImagePath class="card-img-top" alt="КиноКресло - смотреть фильмы онлайн">
+                    </a>
+                    <div class="card-body">
+                        <h5><a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">@product.Name</a></h5>
+                        <p>Стоимость: @product.Cost рублей</p>
+                        <p>Длительность: @product.Duration минут</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-footer justify-content-center">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                @await Component.InvokeAsync("CartFill", product.Id)
+                                @await Component.InvokeAsync("Comparatives", product.Id)
+                                <a class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Удалить из избранного" asp-area="" asp-controller="Favourite" asp-action="Remove" asp-route-productId="@product.Id"><i class="bi bi-trash"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

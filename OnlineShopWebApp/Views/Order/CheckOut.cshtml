@@ -1,0 +1,56 @@
+﻿@model UserDeliveryInfo
+
+<div class="row justify-content-center">
+    <h1>Оформление нового заказа</h1>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-area="" asp-controller="Order" asp-action="CheckOut" method="post">
+            <div class="text-danger font-weight-bold" asp-validation-summary="All"></div>
+            <div class="form-group">
+                <div>
+                    <label asp-for="Name">Имя</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="Name"><i class="bi bi-person"></i></span>
+                        <input type="text" asp-for="Name" class="form-control" aria-describedby="Surname" />
+                        <span asp-validation-for="Name" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname">Фамилия</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="Surname"><i class="bi bi-person"></i></span>
+                    <input type="text" asp-for="Surname" class="form-control" aria-describedby="Surname" />
+                    <span asp-validation-for="Surname" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address">Адрес доставки</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="Address"><i class="bi bi-envelope"></i></span>
+                    <input type="text" asp-for="Address" class="form-control" aria-describedby="Address" />
+                    <span asp-validation-for="Address" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment">Комментарий к заказу</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="Comment"><i class="bi bi-pencil"></i></span>
+                    <input type="text" asp-for="Comment" class="form-control" aria-describedby="Comment" />
+                    <span asp-validation-for="Comment" />
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" value="Оформить заказ" class="btn btn-outline-dark" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-center">
+    <a asp-area="" asp-controller="Cart" asp-action="Index">Назад к корзине</a>
+</div>
+
+

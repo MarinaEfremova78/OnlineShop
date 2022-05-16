@@ -1,0 +1,43 @@
+﻿@model Order
+
+<form method="post">
+    <div class="container-fluid">
+        <div class="row">
+            @await Html.PartialAsync("AdminLeftMenu")
+            <div class="col-9">
+                <div class="col-12 text-left">
+                    <h3>Заказ №@Model.OrderNumber</h3>
+                </div>
+                <hr class="m-3" />
+                <div class="row">
+                    <div class="col-6 text-left">
+                        <p>Дата и время оформления</p>
+                        <p>Id заказа: </p>
+                        <p>Имя получателя: </p>
+                        <p>Фамилия получателя: </p>
+                        <p>Адрес доставки: </p>
+                        <p>Комментарий к заказу: </p>
+                        <p>Статус заказа: </p>
+                    </div>
+                    <div class="col-6 text-left">
+                        <p>@Model.Date в @Model.Time</p>
+                        <p>@Model.Id</p>
+                        <p>@Model.User.Name</p>
+                        <p>@Model.User.Surname</p>
+                        <p>@Model.User.Address</p>
+                        <p>@Model.User.Comment</p>
+                        <p>
+                            <select asp-for="@Model.Status" asp-items="@Html.GetEnumSelectList<OrderStatuses>()" class="form-control"></select>
+                        </p>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <button class="btn btn-outline-dark" type="submit" asp-area="Admin" asp-controller="Orders" asp-action="ChangeStatus" asp-route-orderId="@Model.Id">Обновить</button>
+                </div>
+                <div class="text-left">
+                    <a asp-area="Admin" asp-controller="Orders" asp-action="Index">Назад к списку заказов</a>
+                </div>
+            </div>           
+        </div>
+    </div>
+</form>

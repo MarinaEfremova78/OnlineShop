@@ -1,0 +1,55 @@
+﻿@model User
+
+<div class="container-fluid">
+    <div class="row">
+        @await Html.PartialAsync("AdminLeftMenu")
+        <div class="col-9">
+            <div class="col-12 text-center">
+                <h3>Редактировать данные пользователя</h3>
+            </div>
+            <form method="post">
+                <div class="text-danger font-weight-bold" asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="hidden" value="@Model.Id" asp-for="Id">
+                        <input type="hidden" value="@Model.Password" asp-for="Password">
+                        <input type="hidden" value="@Model.ConfirmPassword" asp-for="ConfirmPassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name">Имя</label><br />
+                    <div class="input-group">
+                        <input class="form-control" value="@Model.Name" placeholder="@Model.Name" asp-for="Name" />
+                        <span asp-validation-for="Name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Surname">Фамилия</label><br />
+                    <div class="input-group">
+                        <input class="form-control" value="@Model.Surname" placeholder="@Model.Surname" asp-for="Surname" />
+                        <span asp-validation-for="Surname" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmailAddress">E-mail</label><br />
+                    <div class="input-group">
+                        <input class="form-control" value="@Model.EmailAddress" placeholder="@Model.EmailAddress" asp-for="EmailAddress" />
+                        <span asp-validation-for="EmailAddress" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber">Телефон</label><br />
+                    <div class="input-group">
+                        <input class="form-control" value="@Model.PhoneNumber" placeholder="@Model.PhoneNumber" asp-for="PhoneNumber" />
+                        <span asp-validation-for="PhoneNumber" />
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" value="Сохранить" class="btn btn-outline-dark" />
+                </div>
+                <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Users" asp-action="Details" asp-route-userId="@Model.Id"><i class="bi bi-arrow-return-left"></i></a>
+            </form>
+        </div>
+    </div>
+</div>
+

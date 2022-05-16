@@ -1,0 +1,45 @@
+﻿@model Cart
+
+<div class="container-fluid">
+    <div class="text-center">
+        <h1>Корзина</h1>
+    </div>
+    <div class="row d-flex">
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th></th>
+                    <th>Название позиции</th>
+                    <th>Количество товара в позиции</th>
+                    <th>Стоимость позиции</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model.CartElements)
+                {
+                    <tr class="text-center">
+                        <td><i class="bi bi-camera-reels"></i></td>
+                        <td>@product.Product.Name</td>
+                        <td>@product.Count</td>
+                        <td>@product.Cost рублей</td>
+                        <td>
+                            <a class="btn btn-outline-dark" asp-controller="Cart" asp-action="Increase" asp-route-productId="@product.Product.Id">+</a>
+                            <a class="btn btn-outline-dark" asp-controller="Cart" asp-action="Decrease" asp-route-productId="@product.Product.Id">-</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <hr class="my-5" />
+    <div class="text-right">
+        <h3>Итоговая сумма: @Model.TotalSum рублей</h3>
+        <div class="btn-group-vertical" role="group" aria-label="Basic example">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a class="btn btn-outline-dark" asp-area="" asp-controller="Home" asp-action="Index">Продолжить покупки</a>
+                <a class="btn btn-outline-danger" asp-area="" asp-controller="Cart" asp-action="Clear">Очистить корзину</a>
+            </div>
+            <a class="btn btn-outline-success" asp-area="" asp-controller="Order" asp-action="CheckOut">Оформить заказ</a>
+        </div>
+    </div>
+</div>

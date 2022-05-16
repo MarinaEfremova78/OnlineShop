@@ -1,0 +1,35 @@
+﻿@model List<Role>
+
+<div class="container-fluid">
+    <div class="row">
+        @await Html.PartialAsync("AdminLeftMenu")
+        <div class="col-9">
+            <div class="col-12 text-center">
+                <h3>Список ролей</h3>
+            </div>
+            @if (Model != null && Model.Count != 0)
+            {
+                <hr class="my-3" />
+                <div class="row">
+                    @foreach (var role in Model)
+                    {
+                        <div class="col-6 text-left">
+                            <p>@role.Name</p>
+                        </div>
+                        <div class="col-6 text-left">
+                            <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Roles" asp-action="Remove" asp-route-roleName="@role.Name">Удалить</a>
+                        </div>
+                        <div class="my-4"></div>
+                    }
+                </div>
+            }
+            <hr class="my-3" />
+            <div class="row">
+                <div class="col-9 text-left">
+                    <a class="btn btn-lg btn-outline-info" asp-area="Admin" asp-controller="Roles" asp-action="Add">Добавить роль</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

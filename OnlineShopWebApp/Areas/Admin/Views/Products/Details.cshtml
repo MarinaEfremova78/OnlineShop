@@ -1,0 +1,40 @@
+﻿@model Product
+
+<div class="container-fluid" style="font-family:'Courier New'">
+    <div class="row">
+        <div class="col-6">
+            <img src=@Model.ImagePath class="w-100 h-100 mx-auto d-block img-thumbnail shadow" alt="КиноКресло - смотреть фильмы онлайн">
+        </div>
+        <div class="col-6">
+            @await Html.PartialAsync("Product")
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Products" asp-action="Index"><i class="bi bi-arrow-return-left"></i></a>
+                <a class="btn btn-outline-dark" asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-productId="@Model.Id">Редактировать</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                    Удалить
+                </button>
+
+
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLabel">Удаление продукта</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Вы действительно хотите удалить этот продукт?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Нет</button>
+                                <a asp-area="Admin" asp-controller="Products" asp-action="Remove" asp-route-productId="@Model.Id" type="button" class="btn btn-danger">Да</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+            </div>
+        </div>
+    </div>
+</div>

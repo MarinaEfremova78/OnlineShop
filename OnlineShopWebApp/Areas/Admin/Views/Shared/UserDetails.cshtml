@@ -1,0 +1,46 @@
+﻿@model User
+
+<form method="post">
+    <div class="container-fluid">
+        <div class="row">
+            @await Html.PartialAsync("AdminLeftMenu")
+            <div class="col-9">
+                <div class="col-12 text-left">
+                    <h3>Пользователь @Model.Id</h3>
+                </div>
+                <hr class="my-3" />
+                <div class="row">
+                    <div class="col-6 text-left">
+                        <p>Имя:</p>
+                        <p>Фамилия:</p>
+                        <p>Email(логин):</p>
+                        <p>Номер телефона: </p>
+                    </div>
+                    <div class="col-6 text-left">
+                        <p>@Model.Name</p>
+                        <p>@Model.Surname</p>
+                        <p>@Model.EmailAddress</p>
+                        <p>@Model.PhoneNumber</p>
+                        <p>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Действия
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Users" asp-action="ChangePassword" asp-route-userId="@Model.Id">Смена пароля</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Users" asp-action="Edit" asp-route-userId="@Model.Id">Редактирование данных</a>
+                                    <a class="dropdown-item" href="#">Права доступа</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Users" asp-action="Remove" asp-route-userId="@Model.Id">Удалить пользователя</a>
+                                </div>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+                <div class="my-4"></div>
+                <div class="text-left">
+                    <a asp-area="Admin" asp-controller="Users" asp-action="Index">Назад к списку пользователей</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,19 @@
+﻿@model Product
+
+<div class="container-fluid" style="font-family:'Courier New'">
+    <div class="row">
+        <div class="col-6">
+            <img src=@Model.ImagePath class="w-100 h-100 mx-auto d-block img-thumbnail shadow" alt="КиноКресло - смотреть фильмы онлайн">
+        </div>
+        <div class="col-6">
+            @await Html.PartialAsync("Product")
+            <div class="btn-group" role="group" aria-label="Basic example">
+                @await Component.InvokeAsync("CartFill", Model.Id)
+                <a class="btn btn-outline-dark" data-toggle="tooltip" data-placement="top" title="Продолжить покупки" asp-area="" asp-controller="Home" asp-action="Index" asp-route-pageNumber="@ViewBag.PageNumber"><i class="bi bi-house"></i></a>
+                @await Component.InvokeAsync("Favourites", Model.Id)
+                @await Component.InvokeAsync("Comparatives", Model.Id)
+            </div>
+        </div>
+    </div>
+</div>
+

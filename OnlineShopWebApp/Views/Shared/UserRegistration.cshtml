@@ -1,0 +1,47 @@
+﻿@model User
+
+<div class="text-danger font-weight-bold" asp-validation-summary="All"></div>
+<h4 class="text-center">Регистрация</h4>
+<div>
+    <label class="font-weight-bold" asp-for="Name">Имя</label><br />
+    <div class="input-group">
+        <input type="text" asp-for="Name" class="form-control box-shadow" />
+        <span asp-validation-for="Name" />
+    </div>
+</div>
+<div>
+    <label class="font-weight-bold" asp-for="Surname">Фамилия</label><br />
+    <div class="input-group">
+        <input type="text" asp-for="Surname" class="form-control box-shadow" />
+        <span asp-validation-for="Surname" />
+    </div>
+</div>
+<div>
+    <label class="font-weight-bold" asp-for="PhoneNumber">Номер телефона</label><br />
+    <div class="input-group">
+        <input type="tel" asp-for="PhoneNumber" class="form-control box-shadow" />
+        <span asp-validation-for="PhoneNumber" />
+    </div>
+</div>
+<div>
+    <label class="font-weight-bold" asp-for="EmailAddress">E-mail</label><br />
+    <div class="input-group">
+        <input type="email" asp-for="EmailAddress" class="form-control box-shadow" />
+        <span asp-validation-for="EmailAddress" />
+    </div>
+</div>
+<div>
+    <label class="font-weight-bold" asp-for="Password">Пароль</label><br />
+    <div class="input-group">
+        <input type="password" asp-for="Password" class="form-control box-shadow" />
+        <span asp-validation-for="Password" />
+    </div>
+</div>
+<div>
+    <label class="font-weight-bold" asp-for="ConfirmPassword">Подтвердите пароль</label><br />
+    <div class="input-group">
+        <input type="password" asp-for="ConfirmPassword" class="form-control box-shadow" />
+        <span asp-validation-for="ConfirmPassword" />
+    </div>
+</div>
+<div class="my-4"></div>

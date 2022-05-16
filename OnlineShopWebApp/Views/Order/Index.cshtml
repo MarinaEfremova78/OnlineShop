@@ -1,0 +1,55 @@
+﻿@model Order
+
+<div class="container-fluid">
+    <div class="alert-success text-center">
+        <h1>Ваш заказ успешно оформлен!</h1>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="text-center">
+                <h3>Детали заказа</h3>
+            </div>
+            <div class="text-left">
+                <p>Имя получателя: @Model.User.Name</p>
+                <p>Фамилия получателя: @Model.User.Surname</p>
+                <p>Адрес доставки: @Model.User.Address</p>
+                <p>Номер заказа: @string.Format("{0: 000000}", Model.OrderNumber)</p>
+                <p>Комментарий к заказу: @Model.User.Comment</p>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="text-center">
+                <h3>Корзина</h3>
+            </div>
+            <div class="row d-flex">
+                <table class="table">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Название позиции</th>
+                            <th>Количество товара в позиции</th>
+                            <th>Стоимость позиции</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model.Cart.CartElements)
+                        {
+                            <tr class="text-center">
+                                <td>@product.Product.Name</td>
+                                <td>@product.Count</td>
+                                <td>@product.Cost рублей</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <hr class="my-5" />
+            <div class="text-right">
+                <h3>Итоговая сумма: @Model.Cart.TotalSum рублей</h3>
+            </div>
+
+        </div>
+    </div>
+    <div class="text-center">
+        <a class="btn btn-outline-dark" asp-area="" asp-controller="Home" asp-action="Index">Продолжить покупки</a>
+    </div>
+</div>

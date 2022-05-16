@@ -1,0 +1,10 @@
+﻿@model Product
+
+@if (ViewBag.Favourite == null)
+{
+    <a class="btn btn-outline-dark" asp-area="" asp-controller="Favourite" data-toggle="tooltip" data-placement="top" title="Добавить в Избранное" asp-action="AddToFavourites" asp-route-pageNumber="@ViewBag.PageNumber" asp-route-productId="@Model.Id"><i class="bi bi-bookmarks"></i></a>
+}
+else
+{
+    <button class="btn btn-outline-dark" data-toggle="tooltip" data-placement="top" title="Добавлено в Избранное"><i class="bi bi-bookmark-check-fill"></i></button>
+}
